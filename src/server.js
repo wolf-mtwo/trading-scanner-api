@@ -2,6 +2,7 @@ import log4js from 'log4js';
 import { System } from './components/system';
 import { MongoDB } from './components/mongo';
 import { Socket } from './components/socket';
+import { Stock } from './components/stock';
 
 let logger = log4js.getLogger('app');
 let system = new System();
@@ -17,6 +18,9 @@ MongoDB.start()
 })
 .then(() => {
   logger.info('modules were loaded');
+  return Stock.populate();
+})
+.then(() => {
   return system.start();
 })
 .then((server) => {

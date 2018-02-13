@@ -6,7 +6,6 @@ import http from 'http';
 import log4js from 'log4js';
 import config from '../../config';
 import { Utils } from './app/utils';
-import { Socket } from '../socket';
 
 // var options = {
 //   key: fs.readFileSync('cert/privkey1.pem'),
@@ -47,7 +46,6 @@ export class System {
     require('./app/default')(app);
     // this.server = https.createServer(options, app);
     this.server = http.createServer(app);
-    Socket.init(this.server);
     this.server.listen(this.port);
     return Promise.resolve(this.server);
   }
