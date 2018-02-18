@@ -14,10 +14,10 @@ export class Day extends Stock {
       if (!data) {
         let { body } = await this.findBySymbol(this.symbol, this.date);
         this.save(body);
-        this.logger.info('population', this.symbol, this.date, 'finished!!');
+        this.logger.info('populate', this.symbol, this.date, 'finished!!');
         this.logSave();
       } else {
-        this.logger.debug('population', this.symbol, this.date, 'stored!');
+        this.logger.debug('populate', this.symbol, this.date, 'stored!');
       }
     } catch (err) {
       console.log(err.stack);
@@ -40,7 +40,7 @@ export class Day extends Stock {
   }
 
   findBySymbol(symbol, date) {
-    this.logger.debug('population', this.symbol, this.date, 'loading!!');
+    this.logger.debug('populate', this.symbol, this.date, 'loading!!');
     return request
     .get(`https://api.iextrading.com/1.0/stock/${symbol}/chart/date/${date}`)
     .timeout({response: 30000})

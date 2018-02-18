@@ -21,4 +21,10 @@ export class StockMonitor {
       return stock.populate();
     }));
   }
+
+  async generator() {
+    await Promise.all(this.stocks.map((stock) => {
+      return stock.generator();
+    }));
+  }
 }

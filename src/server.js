@@ -14,6 +14,7 @@ let logger = log4js.getLogger('server');
     let stockMonitor = new StockMonitor();
     await stockMonitor.start();
     await stockMonitor.populate();
+    await stockMonitor.generator();
   } catch (err) {
     console.log(err.stack);
   }

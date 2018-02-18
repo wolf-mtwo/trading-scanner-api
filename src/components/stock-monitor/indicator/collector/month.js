@@ -1,23 +1,20 @@
-import log4js from 'log4js';
 import moment from 'moment';
-import { Stock } from '../stock';
-import { Day } from '../day';
+import { Indicator } from '../indicator';
+import { RSI } from '../rsi';
 
-let logger = log4js.getLogger('database');
-
-export class PopulateMonthCollector extends Stock {
+export class IndicatorMonthCollector extends Indicator {
 
   constructor(symbol, db) {
     super(symbol, db);
-    this.sync_days = 30;
+    this.sync_days = 5;
   }
 
-  async retrieve() {
+  async generator() {
     let dates = this.collectionDays();
     dates.map((date) => {
-      let day = new Day(this.symbol, this.db, date);
-      day.retrieve();
-    })
+      let rsi = new RSI(this.symbol, this.db, date);
+      rsi.generator();
+    });
   }
 
   collectionDays() {

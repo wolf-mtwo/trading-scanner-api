@@ -1,7 +1,9 @@
 import log4js from 'log4js';
 import moment from 'moment';
 import { Stats } from '../stock/stats';
-import { MonthCollector } from '../stock/collector/month';
+import { PopulateMonthCollector } from '../stock/collector/month';
+import { IndicatorMonthCollector } from '../indicator/collector/month';
+import { RSI } from '../indicator/rsi';
 import { MongoDB } from '../../mongodb/mongodb';
 
 let logger = log4js.getLogger('database');
@@ -20,7 +22,13 @@ export class Stock {
   async populate() {
     let stats = new Stats(this.symbol, this.mongo.db);
     stats.retrieve();
-    let nonthCollector = new MonthCollector(this.symbol, this.mongo.db);
-    nonthCollector.retrieve();
+    let monthCollector = new PopulateMonthCollector(this.symbol, this.mongo.db);
+    monthCollector.retrieve();
+  }
+
+  async generator() {
+    let monthCollector = new IndicatorMonthCollector(this.symbol, this.mongo.db);
+    monthCollector.generator();
+    console.log('generator');
   }
 }
