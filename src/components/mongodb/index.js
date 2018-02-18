@@ -20,7 +20,7 @@ export class MongoDB {
 
   static get() {
     if (!db) {
-      throw new Error('Trere is no a database connection');
+      throw new Error('there is no database connection');
     }
     return db;
   }
