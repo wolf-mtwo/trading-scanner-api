@@ -4,6 +4,8 @@ import { MongoDB } from './components/mongodb';
 import { Mongoose } from './components/mongoose';
 import { Socket } from './components/socket';
 import { Stock } from './components/stock';
+
+import { Monitor } from './components/monitor';
 import { StockMonitor } from './components/stock-monitor';
 
 let system = new System();
@@ -15,6 +17,8 @@ let logger = log4js.getLogger('server');
     await stockMonitor.start();
     await stockMonitor.populate();
     await stockMonitor.generator();
+    let monitor = new Monitor();
+    monitor.start();
   } catch (err) {
     console.log(err.stack);
   }

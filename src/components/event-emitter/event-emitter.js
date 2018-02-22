@@ -1,4 +1,5 @@
-import Emitter from './emitter';
+import { Emitter }  from './emitter';
+import { TASK_MANAGER, NEXT } from './channels';
 
 let emitter = new Emitter();
 
@@ -7,9 +8,6 @@ export class EventEmitter {
   static emit(channel, data) {
     if (!channel) {
       throw new Error('channel is undefined');
-    }
-    if (!data) {
-      throw new Error('data is undefined');
     }
     emitter.emit(channel, data);
   }
@@ -22,5 +20,10 @@ export class EventEmitter {
       throw new Error('callback is undefined');
     }
     emitter.on(channel, callback);
+  }
+
+  static next(data) {
+    emitter.on(TASK_MANAGER, data);
+    emitter.on(NEXT);
   }
 }

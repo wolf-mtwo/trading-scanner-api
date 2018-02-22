@@ -6,7 +6,7 @@ export class IndicatorMonthCollector extends Indicator {
 
   constructor(symbol, db) {
     super(symbol, db);
-    this.sync_days = 5;
+    this.sync_days = 2;
   }
 
   async generator() {

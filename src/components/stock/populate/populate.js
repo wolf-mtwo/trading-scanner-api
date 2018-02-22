@@ -1,6 +1,6 @@
 import 'babel-polyfill';
 import request from 'superagent';
-import stock from '../../../stock';
+import stock from '../../../stocks';
 import { MongoDB } from '../../mongodb';
 
 export class Populate {

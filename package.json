@@ -25,6 +25,7 @@
     "gulp-sequence": "^0.4.6"
   },
   "dependencies": {
+    "alphavantage": "^1.1.1",
     "babel-polyfill": "^6.26.0",
     "body-parser": "^1.15.2",
     "cors": "^2.8.3",
