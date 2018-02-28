@@ -20,15 +20,15 @@ export class Stock {
   }
 
   async populate() {
-    // let stats = new Stats(this.symbol, this.mongo.db);
-    // stats.retrieve();
-    // let monthCollector = new PopulateMonthCollector(this.symbol, this.mongo.db);
-    // monthCollector.retrieve();
+    let stats = new Stats(this.symbol, this.mongo.db);
+    stats.retrieve();
+    let monthCollector = new PopulateMonthCollector(this.symbol, this.mongo.db);
+    monthCollector.retrieve();
   }
 
   async generator() {
-    // let monthCollector = new IndicatorMonthCollector(this.symbol, this.mongo.db);
-    // monthCollector.generator();
-    // console.log('generator');
+    let monthCollector = new IndicatorMonthCollector(this.symbol, this.mongo.db);
+    monthCollector.generator();
+    console.log('generator');
   }
 }
